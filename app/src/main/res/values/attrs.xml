@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IconFontTextView">
+        <attr name="fontFile" format="fraction" />
+        <attr name="value" format="fraction" />
+    </declare-styleable>
+</resources>

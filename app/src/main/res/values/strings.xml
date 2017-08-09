@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">91问问</string>
+    <string name="font_file">iconfont/iconfont.ttf</string>
+    <string name="icon_survey">&#xe74e;</string>
+    <string name="icon_vote">&#xe6b2;</string>
+    <string name="icon_promotion">&#xe6db;</string>
+    <string name="icon_exchange">&#xe662;</string>
+    <string name="icon_user">&#xe6b8;</string>
+    <string name="icon_user_on">&#xe732;</string>
+    <string name="title_survey">问卷一览</string>
+    <string name="title_vote">快速问答</string>
+    <string name="title_promotion">活动中心</string>
+    <string name="title_exchange">兑换中心</string>
+    <string name="title_user">个人中心</string>
+</resources>
