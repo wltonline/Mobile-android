@@ -4,7 +4,7 @@ package net.nineoneww.mobile.api.res;
  * Created by lilian on 2017/8/8.
  */
 
-public class NewsData {
+public class BookData {
     private String newsTitle;//新闻标题
     private String newsDate; //新闻发布时间
     private String newsImgUrl; // 新闻图片Url地址

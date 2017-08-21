@@ -53,7 +53,8 @@ public class MyFragment extends Fragment implements View.OnClickListener{
 //            case R.id.btn_three:
 //                TextView mTextViewMore = (TextView)getActivity().findViewById(R.id.tab_menu_promotion_num);
 //                mTextViewMore.setText("999+");
-//                mTextViewMore.setVisibility(View.VISIBLE);
+//                mTextViewMore.setVisibility(View.V
+// ISIBLE);
 //                break;
 //            case R.id.btn_four:
 //                ImageView mImageView = (ImageView) getActivity ().findViewById(R.id.tab_menu_exchange_partner);

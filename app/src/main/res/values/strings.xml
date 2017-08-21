@@ -7,6 +7,8 @@
     <string name="icon_exchange">&#xe662;</string>
     <string name="icon_user">&#xe6b8;</string>
     <string name="icon_user_on">&#xe732;</string>
+    <string name="icon_arrow">&#xe6a7;</string>
+    <string name="icon_close">&#xe6b7;</string>
     <string name="title_survey">问卷一览</string>
     <string name="title_vote">快速问答</string>
     <string name="title_promotion">活动中心</string>

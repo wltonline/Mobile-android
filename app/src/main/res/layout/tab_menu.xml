@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -165,15 +166,8 @@
     <View
         android:id="@+id/div_tab_bar"
         android:layout_width="match_parent"
-        android:layout_height="2px"
+        android:layout_height="1px"
         android:layout_above="@id/ly_tab_menu"
         android:background="@color/text_gray" />
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/transparent"
-        android:layout_above="@id/div_tab_bar"
-        android:layout_below="@id/ly_top_bar"/>
 </RelativeLayout>
