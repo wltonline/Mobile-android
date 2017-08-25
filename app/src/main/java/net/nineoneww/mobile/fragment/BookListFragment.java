@@ -33,9 +33,9 @@ import java.util.List;
  * Created by lilian on 2017/8/9.
  */
 
-public class FragmentSurveyList extends Fragment implements SwipeRefreshLayout.OnRefreshListener,View.OnClickListener {
+public class BookListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,View.OnClickListener {
 
-    private static final String TAG = "FragmentSurveyList";
+    private static final String TAG = "BookListFragment";
 
     private SwipeRefreshLayout surveyRefreshLayout;
 
@@ -52,7 +52,7 @@ public class FragmentSurveyList extends Fragment implements SwipeRefreshLayout.O
     private SwipeRefreshLayout refreshLayout;
     private boolean isWebViewOpened = false;
 
-    public FragmentSurveyList() {
+    public BookListFragment() {
         // Required empty public constructor
     }
 

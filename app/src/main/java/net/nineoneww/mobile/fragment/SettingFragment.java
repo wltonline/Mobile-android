@@ -17,13 +17,13 @@ import net.nineoneww.mobile.R;
  * Created by lilian on 2017/8/10.
  */
 
-public class FragmentSetting extends Fragment {
+public class SettingFragment extends Fragment {
 
-    private static final String TAG = "FragmentSetting";
+    private static final String TAG = "SettingFragment";
 
     private ProgressBar progressBar;
 
-    public FragmentSetting() {
+    public SettingFragment() {
         // Required empty public constructor
     }
     @Override

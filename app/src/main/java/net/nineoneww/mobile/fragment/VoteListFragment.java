@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,9 +36,9 @@ import java.util.ArrayList;
  * Created by lilian on 2017/8/10.
  */
 
-public class FragmentVoteList extends Fragment implements SwipeRefreshLayout.OnRefreshListener,View.OnClickListener {
+public class VoteListFragment extends android.support.v4.app.Fragment implements SwipeRefreshLayout.OnRefreshListener,View.OnClickListener {
 
-    private static final String TAG = "FragmentVoteList";
+    private static final String TAG = "VoteListFragment";
 
     //Vote list
     public static final String URL = "https://api.douban.com/v2/book/search?q=python&fields=id,title,author,image,price,url,pubdate";
@@ -58,7 +57,7 @@ public class FragmentVoteList extends Fragment implements SwipeRefreshLayout.OnR
     int lastVisibleItemPosition;
     private Handler handler = new Handler();
 
-    public FragmentVoteList() {
+    public VoteListFragment() {
         // Required empty public constructor
     }
 
@@ -147,7 +146,7 @@ public class FragmentVoteList extends Fragment implements SwipeRefreshLayout.OnR
             @Override
             public void onItemClick(View view, int position) {
 //                Vote VoteItem = voteItems.get(position - 1);
-                Intent intent = new Intent(FragmentVoteList.this.getActivity(), VoteDetailActivity.class);
+                Intent intent = new Intent(VoteListFragment.this.getActivity(), VoteDetailActivity.class);
 //                intent.putExtra(Constant.KEY_HOME_ITEM, VoteItem);
 //                intent.putExtra(Constant.KEY_PROFILE_QUESTIONNAIRE_POINT, profileQuestionnaire);
                 startActivity(intent);

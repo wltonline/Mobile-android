@@ -1,6 +1,5 @@
 package net.nineoneww.mobile;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -8,30 +7,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import net.nineoneww.mobile.fragment.FragmentPromotion;
-import net.nineoneww.mobile.fragment.FragmentSetting;
-import net.nineoneww.mobile.fragment.FragmentSurveyList;
-import net.nineoneww.mobile.fragment.FragmentVoteList;
+import net.nineoneww.mobile.fragment.BookListFragment;
+import net.nineoneww.mobile.fragment.PromotionFragment;
+import net.nineoneww.mobile.fragment.SettingFragment;
+import net.nineoneww.mobile.fragment.VoteListFragment;
 import net.nineoneww.mobile.view.IconFontTextView;
 
-import java.util.ArrayList;
-
 public class HomeActivity extends AppCompatActivity implements
-        FragmentSurveyList.OnFragmentInteractionListener,
-        FragmentVoteList.OnFragmentInteractionListener,
-        FragmentPromotion.OnFragmentInteractionListener,
-        FragmentSetting.OnFragmentInteractionListener,
+        BookListFragment.OnFragmentInteractionListener,
+        VoteListFragment.OnFragmentInteractionListener,
+        PromotionFragment.OnFragmentInteractionListener,
+        SettingFragment.OnFragmentInteractionListener,
         View.OnClickListener{
 
     private static final String TAG = "HomeActivity";
-    private FragmentSurveyList fragmentSurveyList;
-    private FragmentVoteList fragmentVoteList;
-    private FragmentSetting fragmentSetting;
-    private FragmentPromotion fragmentPromotion;
+    private BookListFragment bookListFragment;
+    private VoteListFragment voteListFragment;
+    private SettingFragment settingFragment;
+    private PromotionFragment promotionFragment;
     private LinearLayout ly_one,ly_two,ly_three,ly_four,ly_five;
     private TextView mTextView1,mTextView2,mTextView3,mTextView4,mTextView5;
     private IconFontTextView mIconFontTextView1,mIconFontTextView2,mIconFontTextView3,mIconFontTextView4,mIconFontTextView5;
@@ -70,43 +66,43 @@ public class HomeActivity extends AppCompatActivity implements
         hideFragment(transaction);
         switch (i) {
             case 0:
-                if(fragmentSurveyList == null){
-                    fragmentSurveyList = new FragmentSurveyList();
-                    transaction.add(R.id.fragment_container,fragmentSurveyList);
+                if(bookListFragment == null){
+                    bookListFragment = new BookListFragment();
+                    transaction.add(R.id.fragment_container, bookListFragment);
                 }else {
-                    transaction.show(fragmentSurveyList);
+                    transaction.show(bookListFragment);
                 }
                 break;
             case 1:
-                if(fragmentVoteList == null){
-                    fragmentVoteList = new FragmentVoteList();
-                    transaction.add(R.id.fragment_container,fragmentVoteList);
+                if(voteListFragment == null){
+                    voteListFragment = new VoteListFragment();
+                    transaction.add(R.id.fragment_container, voteListFragment);
                 }else {
-                    transaction.show(fragmentVoteList);
+                    transaction.show(voteListFragment);
                 }
                 break;
             case 2:
-                if(fragmentPromotion == null){
-                    fragmentPromotion = new FragmentPromotion();
-                    transaction.add(R.id.fragment_container,fragmentPromotion);
+                if(promotionFragment == null){
+                    promotionFragment = new PromotionFragment();
+                    transaction.add(R.id.fragment_container, promotionFragment);
                 }else {
-                    transaction.show(fragmentPromotion);
+                    transaction.show(promotionFragment);
                 }
                 break;
             case 3:
-                if(fragmentSurveyList == null){
-                    fragmentSurveyList = new FragmentSurveyList();
-                    transaction.add(R.id.fragment_container,fragmentSurveyList);
+                if(bookListFragment == null){
+                    bookListFragment = new BookListFragment();
+                    transaction.add(R.id.fragment_container, bookListFragment);
                 }else {
-                    transaction.show(fragmentSurveyList);
+                    transaction.show(bookListFragment);
                 }
                 break;
             case 4:
-                if(fragmentSetting == null){
-                    fragmentSetting = new FragmentSetting();
-                    transaction.add(R.id.fragment_container,fragmentSetting);
+                if(settingFragment == null){
+                    settingFragment = new SettingFragment();
+                    transaction.add(R.id.fragment_container, settingFragment);
                 }else {
-                    transaction.show(fragmentSetting);
+                    transaction.show(settingFragment);
                 }
                 break;
 
@@ -119,20 +115,20 @@ public class HomeActivity extends AppCompatActivity implements
 
     private void hideFragment(FragmentTransaction transaction2) {
         // TODO Auto-generated method stub
-        if(fragmentSurveyList != null){
-            transaction2.hide(fragmentSurveyList);
+        if(bookListFragment != null){
+            transaction2.hide(bookListFragment);
         }
 
-        if(fragmentVoteList != null){
-            transaction2.hide(fragmentVoteList);
+        if(voteListFragment != null){
+            transaction2.hide(voteListFragment);
         }
 
-        if(fragmentPromotion != null){
-            transaction2.hide(fragmentPromotion);
+        if(promotionFragment != null){
+            transaction2.hide(promotionFragment);
         }
 
-        if(fragmentSetting != null){
-            transaction2.hide(fragmentSetting);
+        if(settingFragment != null){
+            transaction2.hide(settingFragment);
         }
 
     }

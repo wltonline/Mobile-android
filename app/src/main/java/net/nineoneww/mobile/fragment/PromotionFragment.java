@@ -22,8 +22,8 @@ import java.util.ArrayList;
  * Created by lilian on 2017/8/21.
  */
 
-public class FragmentPromotion extends Fragment {
-    private static final String TAG = "FragmentPromotion";
+public class PromotionFragment extends Fragment {
+    private static final String TAG = "PromotionFragment";
 
     private ProgressBar progressBar;
     private RecyclerView mRecyclerView;
@@ -32,7 +32,7 @@ public class FragmentPromotion extends Fragment {
 
     private RecyclerView.LayoutManager mLayoutManager;
 
-    public FragmentPromotion() {
+    public PromotionFragment() {
         // Required empty public constructor
     }
     @Override
