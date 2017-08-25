@@ -7,6 +7,7 @@
     <color name="text_main">#fe7140</color>
     <color name="text_hover">#e65827</color>
     <color name="text_gray">#9296a1</color>
+    <color name="text_dark">#424242</color>
     <color name="text_white">#ffffff</color>
     <color name="transparent">#00000000</color>
 </resources>

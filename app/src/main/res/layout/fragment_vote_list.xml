@@ -8,16 +8,17 @@
     tools:context="net.nineoneww.mobile.HomeActivity">
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/survey_refresh_layout"
+        android:id="@+id/vote_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ListView
-            android:layout_width="fill_parent"
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/voteListView"
+            android:id="@+id/rv_vote"
             android:clipToPadding="false">
-        </ListView>
+        </android.support.v7.widget.RecyclerView>
+
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <RelativeLayout

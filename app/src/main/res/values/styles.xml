@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- NoActionBar -->
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -62,6 +63,16 @@
         <item name="android:textSize">12sp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="SmallTextView">
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textSize">@dimen/textSize_small</item>
+    </style>
+
+    <style name="SmallGreyTextView">
+        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textSize">@dimen/textSize_small</item>
     </style>
 
 </resources>

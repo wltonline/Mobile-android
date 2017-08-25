@@ -16,23 +16,23 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.api.res.Book;
+import net.nineoneww.mobile.api.res.VoteData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lilian on 2017/8/10.
+ * Created by lilian on 2017/8/8.
  */
 
-public class BookListAdapter extends BaseAdapter {
+public class VoteAdapter extends BaseAdapter {
 
-    private List<Book> datas = new ArrayList<Book>();//书籍列表集合
+    private List<VoteData> datas = new ArrayList<VoteData>();//新闻列表集合
 
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public BookListAdapter(Context context, List<Book> datas) {
+    public VoteAdapter(Context context, List<VoteData> datas) {
         this.datas = datas;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
@@ -40,65 +40,60 @@ public class BookListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return datas.size();
+        return datas.size(); //返回列表的长度
     }
 
     @Override
-    public Book getItem(int position) {
-        return datas.get(position);
+    public VoteData getItem(int position) {
+        return datas.get(position); //通过列表的位置 获得集合中的对象
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position) { // 获得集合的Item的位置
         return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.content_vote_list, null);//找到布局文件
-            convertView.setTag(new BookListAdapter.ViewHolder(convertView));
-        }
-        initViews(getItem(position), (BookListAdapter.ViewHolder) convertView.getTag());
+    public View getView(int position, View convertView, ViewGroup parent) {
 
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(R.layout.content_survey_item, null);//找到布局文件
+            convertView.setTag(new ViewHolder(convertView));
+        }
+        initViews(getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
+
     }
 
-    private void initViews(Book data, BookListAdapter.ViewHolder holder) {//初始化数据
+    private void initViews(VoteData data, ViewHolder holder) {//初始化数据
 
         /**
          * 第一次初始话的时候通过 要请求的Url地址 为每个图片设置一个Tag标记,
          * 然后在设置图片的时候判断Tag标记如果是才把图片设置到ImageView上,
          * 这做的原因是为了防止ListView 中的图片错位...
          */
-//        String authors = "";
-//        for(int i = 0; i < data.getBookAuthor().size(); i++){
-//            authors += "&" + data.getBookAuthor().get(i);
-//        }
-        holder.ivImg.setTag(data.getBookImgUrl());//设置Tag
-        holder.tvTitle.setText(data.getBookTitle());
-        holder.tvPubDate.setText(data.getBookPubDate());
-        holder.tvAuthor.setText(data.getBookAuthor());
-        holder.tvPrice.setText(data.getBookPrice());
+//        holder.ivImg.setTag(data.getNewsImgUrl());//设置Tag
+
+        //设置新闻标题为集合中获得的标题
+        holder.tvTitle.setText(data.getNewsTitle());
+
+        ////设置新闻发布时间为集合中获得的发布时间
+        holder.tvDate.setText(data.getNewsDate());
 
         //通过集合中的图片地址获得图片并且设置到view上
-        getImage(this.context, data.getBookImgUrl(), holder.ivImg);
+//        getImage(this.context, data.getNewsImgUrl(), holder.ivImg);
 
     }
 
     protected class ViewHolder {
-        private ImageView ivImg;
+//        private ImageView ivImg;
         private TextView tvTitle;
-        private TextView tvPubDate;
-        private TextView tvAuthor;
-        private TextView tvPrice;
+        private TextView tvDate;
 
         public ViewHolder(View view) {
-            ivImg = (ImageView) view.findViewById(R.id.book_img);
-            tvTitle = (TextView) view.findViewById(R.id.book_title);
-            tvPubDate = (TextView) view.findViewById(R.id.book_publish_date);
-            tvAuthor = (TextView) view.findViewById(R.id.book_author);
-            tvPrice = (TextView) view.findViewById(R.id.book_price);
+//            ivImg = (ImageView) view.findViewById(R.id.iv_img);
+            tvTitle = (TextView) view.findViewById(R.id.survey_title);
+            tvDate = (TextView) view.findViewById(R.id.survey_points);
         }
     }
 
@@ -125,3 +120,4 @@ public class BookListAdapter extends BaseAdapter {
         }
     }
 }
+

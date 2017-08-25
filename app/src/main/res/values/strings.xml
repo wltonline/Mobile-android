@@ -14,4 +14,10 @@
     <string name="title_promotion">活动中心</string>
     <string name="title_exchange">兑换中心</string>
     <string name="title_user">个人中心</string>
+    <string name="md_add_item">添加</string>
+    <string name="md_del_item">删除</string>
+    <string name="md_linear_rv">线性RecyclerView</string>
+    <string name="footer_pull_loading">上拉加载更多</string>
+    <string name="footer_loading">正在加载...</string>
+    <string name="footer_baseline">我是有底线的</string>
 </resources>

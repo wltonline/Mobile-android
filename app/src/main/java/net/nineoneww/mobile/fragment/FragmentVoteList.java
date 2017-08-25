@@ -3,16 +3,16 @@ package net.nineoneww.mobile.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,19 +20,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import net.nineoneww.mobile.BookDetailActivity;
+import net.nineoneww.mobile.VoteDetailActivity;
 import net.nineoneww.mobile.HomeActivity;
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.adapter.BookListAdapter;
-import net.nineoneww.mobile.api.res.Book;
-import net.nineoneww.mobile.util.Constant;
+import net.nineoneww.mobile.adapter.VoteListAdapter;
+import net.nineoneww.mobile.api.res.Vote;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by lilian on 2017/8/10.
@@ -42,28 +41,25 @@ public class FragmentVoteList extends Fragment implements SwipeRefreshLayout.OnR
 
     private static final String TAG = "FragmentVoteList";
 
-    //book list
+    //Vote list
     public static final String URL = "https://api.douban.com/v2/book/search?q=python&fields=id,title,author,image,price,url,pubdate";
 
-    private ListView listView;
-    private OnFragmentInteractionListener mListener;
-    private List<Book> datas;
-    private LinearLayout linerlayoutPoint;
-    private TextView textViewPoint;
-    private TextView textViewPointEmpty;
+    private RecyclerView mRecyclerView;
+    private VoteListAdapter mAdapter;
 
-    private BookListAdapter bookListAdapter;
+    private LinearLayoutManager mLayoutManager;
+    private ArrayList<Vote> datas;
+
     private SwipeRefreshLayout refreshLayout;
-    private List<Book> bookItems;
     private boolean isWebViewOpened = false;
+    private boolean isLoading;
+    int page = 0;
+    int totalPage = 2;//模拟请求的一共的页数
+    int lastVisibleItemPosition;
+    private Handler handler = new Handler();
 
     public FragmentVoteList() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -71,54 +67,97 @@ public class FragmentVoteList extends Fragment implements SwipeRefreshLayout.OnR
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_vote_list, container, false);
-        listView = (ListView) rootView.findViewById(R.id.voteListView);
-        datas = new ArrayList<Book>();
 
         //swipe
-        refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.survey_refresh_layout);
-        refreshLayout.setOnRefreshListener(this);
-        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        refreshLayout.setVisibility(View.VISIBLE);
-        bookListAdapter = new BookListAdapter(this.getContext(), datas);
-        listView.setAdapter(bookListAdapter);
-
-        //event
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.vote_refresh_layout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //header
-//                if (position == 0) {
-//                    return;
-//                }
-//
-//                Book bookItem = bookItems.get(position - 1);
-                Intent intent = new Intent(FragmentVoteList.this.getActivity(), BookDetailActivity.class);
-//                intent.putExtra(Constant.KEY_HOME_ITEM, bookItem);
-//                intent.putExtra(Constant.KEY_PROFILE_QUESTIONNAIRE_POINT, profileQuestionnaire);
-                startActivity(intent);
-//                getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.zoom_out);
+            public void onRefresh() {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadInfo(URL);
+                    }
+                }, 2000);
             }
         });
-
-        //set lister for show history
-//        View.OnClickListener listener = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mListener.showPointHistory();
-//            }
-//        };
-//        linerlayoutPoint.setOnClickListener(listener);
-//        textViewPoint.setOnClickListener(listener);
-//        textViewPointEmpty.setOnClickListener(listener);
-//        rootView.findViewById(R.id.frameLayout).setOnClickListener(listener);
-
-
-
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        refreshLayout.setVisibility(View.VISIBLE);
         //show refresh
         refreshLayout.post(new Runnable() {
             @Override
             public void run() {
+                refreshLayout.setRefreshing(true);
                 loadInfo(URL);
+            }
+        });
+
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_vote);
+        datas = new ArrayList<Vote>();
+        mAdapter = new VoteListAdapter(this.getContext(), datas);
+        mLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Log.d("test", "StateChanged = " + newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.d("test", "onScrolled");
+
+                lastVisibleItemPosition = mLayoutManager.findLastVisibleItemPosition();
+                if (lastVisibleItemPosition + 1 == mAdapter.getItemCount()) {
+                    Log.d("test", "loading executed");
+
+                    boolean isRefreshing = refreshLayout.isRefreshing();
+                    if (isRefreshing) {
+                        mAdapter.notifyItemRemoved(mAdapter.getItemCount());
+                        return;
+                    }
+                    if (!isLoading) {
+                        if (page < totalPage) {
+                            Log.e("duanlian", "onScrollStateChanged: " + "进来了");
+                            isLoading = true;
+                            mAdapter.changeState(1);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    loadMore();
+                                    page++;
+                                    isLoading = false;
+                                }
+                            }, 2000);
+                        } else {
+                            mAdapter.changeState(2);
+                        }
+                    }
+                }
+            }
+        });
+
+        //event
+        mAdapter.setOnItemClickListener(new VoteListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+//                Vote VoteItem = voteItems.get(position - 1);
+                Intent intent = new Intent(FragmentVoteList.this.getActivity(), VoteDetailActivity.class);
+//                intent.putExtra(Constant.KEY_HOME_ITEM, VoteItem);
+//                intent.putExtra(Constant.KEY_PROFILE_QUESTIONNAIRE_POINT, profileQuestionnaire);
+                startActivity(intent);
+//                getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.zoom_out);
+                Log.d("test", "item position = " + position);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
             }
         });
 
@@ -138,10 +177,8 @@ public class FragmentVoteList extends Fragment implements SwipeRefreshLayout.OnR
     @Override
     public void onStart() {
         super.onStart();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name));
-
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.title_vote));
     }
-
 
     @Override
     public void onResume() {
@@ -179,19 +216,19 @@ public class FragmentVoteList extends Fragment implements SwipeRefreshLayout.OnR
                             for (int i = 0; i <jsonArray.length() ; i++) {
 
                                 JSONObject item = jsonArray.getJSONObject(i);
-                                Book data = new Book();
-                                data.setBookTitle(item.getString("title"));
-                                data.setBookPubDate(item.getString("pubdate"));
+                                Vote data = new Vote();
+                                data.setVoteTitle(item.getString("title"));
+                                data.setVotePubDate(item.getString("pubdate"));
 //                                int authorLen = item.getString("author").length();
 //                                String authorArray=item.getString("author");
 //                                ArrayList<String> authorList=new ArrayList<String>();
 //                                for(int j=0;j<authorLen;j++){
 //                                    authorList.add(authorArray);
 //                                }
-                                data.setBookAuthor(item.getString("author"));
-                                data.setBookPrice(item.getString("price"));
-                                data.setBookImgUrl(item.getString("image"));
-//                                data.setBookUrl(item.getString("url"));
+                                data.setVoteAuthor(item.getString("author"));
+                                data.setVotePrice(item.getString("price"));
+                                data.setVoteImgUrl(item.getString("image"));
+//                                data.setVoteUrl(item.getString("url"));
                                 datas.add(data);
                             }
                             refreshLayout.setRefreshing(false);
@@ -204,8 +241,8 @@ public class FragmentVoteList extends Fragment implements SwipeRefreshLayout.OnR
                          * 请求成功后为ListView设置Adapter
                          */
 
-                        listView.setAdapter(bookListAdapter);
-                        bookListAdapter.notifyDataSetChanged();
+                        mRecyclerView.setAdapter(mAdapter);
+                        mAdapter.notifyDataSetChanged();
 
                     }
                 }, new Response.ErrorListener() {
@@ -218,6 +255,12 @@ public class FragmentVoteList extends Fragment implements SwipeRefreshLayout.OnR
 
         mQueue.add(stringRequest);
 
+    }
+
+    private void loadMore() {
+        mAdapter.notifyDataSetChanged();
+        refreshLayout.setRefreshing(false);
+        mAdapter.notifyItemRemoved(mAdapter.getItemCount());
     }
 
     public interface OnFragmentInteractionListener {

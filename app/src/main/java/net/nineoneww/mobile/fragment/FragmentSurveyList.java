@@ -19,8 +19,8 @@ import com.android.volley.toolbox.Volley;
 
 import net.nineoneww.mobile.HomeActivity;
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.adapter.BookAdapter;
-import net.nineoneww.mobile.api.res.BookData;
+import net.nineoneww.mobile.adapter.VoteAdapter;
+import net.nineoneww.mobile.api.res.VoteData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,9 +46,9 @@ public class FragmentSurveyList extends Fragment implements SwipeRefreshLayout.O
 
     private ListView listView;
 
-    private List<BookData> datas;
+    private List<VoteData> datas;
 
-    private BookAdapter surveyListAdapter;
+    private VoteAdapter surveyListAdapter;
     private SwipeRefreshLayout refreshLayout;
     private boolean isWebViewOpened = false;
 
@@ -67,13 +67,13 @@ public class FragmentSurveyList extends Fragment implements SwipeRefreshLayout.O
 
         View rootView = inflater.inflate(R.layout.fragment_survey_list, container, false);
         listView = (ListView) rootView.findViewById(R.id.surveyListView);
-        datas = new ArrayList<BookData>();
+        datas = new ArrayList<VoteData>();
         refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.survey_refresh_layout);
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         refreshLayout.setVisibility(View.VISIBLE);
 //        loadInfo(URL);
-        surveyListAdapter = new BookAdapter(this.getContext(), datas);
+        surveyListAdapter = new VoteAdapter(this.getContext(), datas);
         listView.setAdapter(surveyListAdapter);
 
         //show refresh
@@ -95,7 +95,7 @@ public class FragmentSurveyList extends Fragment implements SwipeRefreshLayout.O
     @Override
     public void onStart() {
         super.onStart();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name));
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.title_survey));
     }
 
 
@@ -135,7 +135,7 @@ public class FragmentSurveyList extends Fragment implements SwipeRefreshLayout.O
 
                             for (int i = 0; i <jsonArray.length() ; i++) {
                                 JSONObject item = jsonArray.getJSONObject(i);
-                                BookData data = new BookData();
+                                VoteData data = new VoteData();
                                 data.setNewsTitle(item.getString("name"));
                                 data.setNewsDate(item.getString("count"));
                                 data.setNewsImgUrl(jsonObject.getString("image"));

@@ -6,19 +6,24 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import net.nineoneww.mobile.fragment.FragmentPromotion;
 import net.nineoneww.mobile.fragment.FragmentSetting;
 import net.nineoneww.mobile.fragment.FragmentSurveyList;
 import net.nineoneww.mobile.fragment.FragmentVoteList;
 import net.nineoneww.mobile.view.IconFontTextView;
 
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity implements
         FragmentSurveyList.OnFragmentInteractionListener,
         FragmentVoteList.OnFragmentInteractionListener,
+        FragmentPromotion.OnFragmentInteractionListener,
         FragmentSetting.OnFragmentInteractionListener,
         View.OnClickListener{
 
@@ -26,6 +31,7 @@ public class HomeActivity extends AppCompatActivity implements
     private FragmentSurveyList fragmentSurveyList;
     private FragmentVoteList fragmentVoteList;
     private FragmentSetting fragmentSetting;
+    private FragmentPromotion fragmentPromotion;
     private LinearLayout ly_one,ly_two,ly_three,ly_four,ly_five;
     private TextView mTextView1,mTextView2,mTextView3,mTextView4,mTextView5;
     private IconFontTextView mIconFontTextView1,mIconFontTextView2,mIconFontTextView3,mIconFontTextView4,mIconFontTextView5;
@@ -35,9 +41,27 @@ public class HomeActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         initView();
         ly_one.performClick();
         setSelectFragment(0);
+    }
+
+    private Toolbar initToolbar(int id, int titleId, int titleString) {
+        //Toolbar
+        Toolbar toolbar = (Toolbar) findViewById(id);
+//        toolbar.setTitle("");
+        TextView textView = (TextView) findViewById(titleId);
+        textView.setText(titleString);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null){
+//            actionBar.setDisplayHomeAsUpEnabled(true);
+//            actionBar.setDisplayShowTitleEnabled(false);
+//        }
+        return toolbar;
     }
 
     private void setSelectFragment(int i) {
@@ -62,11 +86,11 @@ public class HomeActivity extends AppCompatActivity implements
                 }
                 break;
             case 2:
-                if(fragmentSetting == null){
-                    fragmentSetting = new FragmentSetting();
-                    transaction.add(R.id.fragment_container,fragmentSetting);
+                if(fragmentPromotion == null){
+                    fragmentPromotion = new FragmentPromotion();
+                    transaction.add(R.id.fragment_container,fragmentPromotion);
                 }else {
-                    transaction.show(fragmentSetting);
+                    transaction.show(fragmentPromotion);
                 }
                 break;
             case 3:
@@ -103,13 +127,14 @@ public class HomeActivity extends AppCompatActivity implements
             transaction2.hide(fragmentVoteList);
         }
 
+        if(fragmentPromotion != null){
+            transaction2.hide(fragmentPromotion);
+        }
+
         if(fragmentSetting != null){
             transaction2.hide(fragmentSetting);
         }
-//
-//        if(friend != null){
-//            transaction2.hide(friend);
-//        }
+
     }
 
     private void initView() {
@@ -136,6 +161,8 @@ public class HomeActivity extends AppCompatActivity implements
         ly_three.setOnClickListener(this);
         ly_four.setOnClickListener(this);
         ly_five.setOnClickListener(this);
+
+
     }
 
     //重置所有文本的选中状态
@@ -154,6 +181,49 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ly_tab_menu_survey:
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_survey);
+                setSelected();
+                setSelectFragment(0);
+                mTextView1.setSelected(true);
+                mIconFontTextView1.setSelected(true);
+                break;
+            case R.id.ly_tab_menu_vote:
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_vote);
+                setSelected();
+                setSelectFragment(1);
+                mTextView2.setSelected(true);
+                mIconFontTextView2.setSelected(true);
+                break;
+            case R.id.ly_tab_menu_promotion:
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_promotion);
+                setSelected();
+//                Intent intent = new Intent(this, PromotionActivity.class);
+//                startActivity(intent);
+                setSelectFragment(2);
+                mTextView3.setSelected(true);
+                mIconFontTextView3.setSelected(true);
+                break;
+            case R.id.ly_tab_menu_exchange:
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_exchange);
+                setSelected();
+                setSelectFragment(3);
+                mTextView4.setSelected(true);
+                mIconFontTextView4.setSelected(true);
+                break;
+            case R.id.ly_tab_menu_user:
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_user);
+                setSelected();
+                setSelectFragment(4);
+                mTextView5.setSelected(true);
+                mIconFontTextView5.setSelected(true);
+                break;
+        }
+    }
+
+    @Override
     public void onFragmentSurveyListInteraction(Uri uri) {
 
     }
@@ -164,39 +234,8 @@ public class HomeActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ly_tab_menu_survey:
-                setSelected();
-                setSelectFragment(0);
-                mTextView1.setSelected(true);
-                mIconFontTextView1.setSelected(true);
-                break;
-            case R.id.ly_tab_menu_vote:
-                setSelected();
-                setSelectFragment(1);
-                mTextView2.setSelected(true);
-                mIconFontTextView2.setSelected(true);
-                break;
-            case R.id.ly_tab_menu_promotion:
-                setSelected();
-                setSelectFragment(2);
-                mTextView3.setSelected(true);
-                mIconFontTextView3.setSelected(true);
-                break;
-            case R.id.ly_tab_menu_exchange:
-                setSelected();
-                setSelectFragment(3);
-                mTextView4.setSelected(true);
-                mIconFontTextView4.setSelected(true);
-                break;
-            case R.id.ly_tab_menu_user:
-                setSelected();
-                setSelectFragment(4);
-                mTextView5.setSelected(true);
-                mIconFontTextView5.setSelected(true);
-                break;
-        }
+    public void onPromotionFragmentInteraction(Uri uri) {
+
     }
 
     @Override
