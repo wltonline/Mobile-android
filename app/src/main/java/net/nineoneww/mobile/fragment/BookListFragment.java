@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,8 @@ import com.android.volley.toolbox.Volley;
 
 import net.nineoneww.mobile.HomeActivity;
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.adapter.VoteAdapter;
-import net.nineoneww.mobile.api.res.VoteData;
+import net.nineoneww.mobile.adapter.BookAdapter;
+import net.nineoneww.mobile.api.res.Book;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,9 +45,9 @@ public class BookListFragment extends Fragment implements SwipeRefreshLayout.OnR
 
     private ListView listView;
 
-    private List<VoteData> datas;
+    private List<Book> datas;
 
-    private VoteAdapter surveyListAdapter;
+    private BookAdapter surveyListAdapter;
     private SwipeRefreshLayout refreshLayout;
     private boolean isWebViewOpened = false;
 
@@ -65,15 +64,15 @@ public class BookListFragment extends Fragment implements SwipeRefreshLayout.OnR
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_survey_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_book_list, container, false);
         listView = (ListView) rootView.findViewById(R.id.surveyListView);
-        datas = new ArrayList<VoteData>();
+        datas = new ArrayList<Book>();
         refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.survey_refresh_layout);
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setColorSchemeResources(R.color.colorPrimary);
         refreshLayout.setVisibility(View.VISIBLE);
 //        loadInfo(URL);
-        surveyListAdapter = new VoteAdapter(this.getContext(), datas);
+        surveyListAdapter = new BookAdapter(this.getContext(), datas);
         listView.setAdapter(surveyListAdapter);
 
         //show refresh
@@ -135,11 +134,11 @@ public class BookListFragment extends Fragment implements SwipeRefreshLayout.OnR
 
                             for (int i = 0; i <jsonArray.length() ; i++) {
                                 JSONObject item = jsonArray.getJSONObject(i);
-                                VoteData data = new VoteData();
-                                data.setNewsTitle(item.getString("name"));
-                                data.setNewsDate(item.getString("count"));
-                                data.setNewsImgUrl(jsonObject.getString("image"));
-                                data.setNewsUrl(jsonObject.getString("url"));
+                                Book data = new Book();
+                                data.setBookTitle(item.getString("name"));
+                                data.setBookDate(item.getString("count"));
+                                data.setBookImgUrl(jsonObject.getString("image"));
+                                data.setBookUrl(jsonObject.getString("url"));
                                 datas.add(data);
                             }
                             refreshLayout.setRefreshing(false);
