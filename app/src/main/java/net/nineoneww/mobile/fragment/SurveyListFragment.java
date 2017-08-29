@@ -3,11 +3,13 @@ package net.nineoneww.mobile.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +21,8 @@ import com.google.gson.reflect.TypeToken;
 
 import net.nineoneww.mobile.HomeActivity;
 import net.nineoneww.mobile.R;
+import net.nineoneww.mobile.VoteDetailActivity;
 import net.nineoneww.mobile.adapter.SurveyListAdapter;
-import net.nineoneww.mobile.api.res.Demo;
 import net.nineoneww.mobile.api.res.HomeItem;
 import net.nineoneww.mobile.api.res.SopSurveysJson;
 import net.nineoneww.mobile.api.res.Survey;
@@ -44,16 +46,17 @@ public class SurveyListFragment  extends Fragment implements SwipeRefreshLayout.
     private SurveyListAdapter surveyListAdapter;
     private SwipeRefreshLayout surveyRefreshLayout;
     private LinearLayoutManager surverLayoutManager;
-    private boolean isWebViewOpened = false;
     private ArrayList<Survey> homeItems;
+    private SwipeRefreshLayout refreshLayout;
+    private boolean isWebViewOpened = false;
+    private boolean isLoading;
+    int page = 0;
+    int totalPage = 2;//模拟请求的一共的页数
+    int lastVisibleItemPosition;
+    private Handler handler = new Handler();
 
     public SurveyListFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -64,7 +67,27 @@ public class SurveyListFragment  extends Fragment implements SwipeRefreshLayout.
         //swipe
         surveyRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.survey_refresh_layout);
         surveyRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        surveyRefreshLayout.setOnRefreshListener(this);
+        surveyRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadInfo();
+                    }
+                }, 2000);
+            }
+        });
+        surveyRefreshLayout.setVisibility(View.VISIBLE);
+        //show refresh
+        surveyRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                surveyRefreshLayout.setRefreshing(true);
+                loadInfo();
+            }
+        });
+
         surveyRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_survey);
         homeItems = new ArrayList<Survey>();
         surveyListAdapter = new SurveyListAdapter(this.getContext(),homeItems);
@@ -73,11 +96,64 @@ public class SurveyListFragment  extends Fragment implements SwipeRefreshLayout.
         surveyRecyclerView.setAdapter(surveyListAdapter);
         surveyRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        //show refresh
-        surveyRefreshLayout.post(new Runnable() {
+        surveyRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void run() {
-                loadInfo();
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Log.d("test", "StateChanged = " + newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.d("test", "onScrolled");
+
+                lastVisibleItemPosition = surverLayoutManager.findLastVisibleItemPosition();
+                if (lastVisibleItemPosition + 1 == surveyListAdapter.getItemCount()) {
+                    Log.d("test", "loading executed");
+
+                    boolean isRefreshing = surveyRefreshLayout.isRefreshing();
+                    if (isRefreshing) {
+                        surveyListAdapter.notifyItemRemoved(surveyListAdapter.getItemCount());
+                        return;
+                    }
+                    if (!isLoading) {
+                        if (page < totalPage) {
+                            Log.e("duanlian", "onScrollStateChanged: " + "进来了");
+                            isLoading = true;
+                            surveyListAdapter.changeState(1);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    loadInfo();
+                                    page++;
+                                    isLoading = false;
+                                }
+                            }, 2000);
+                        } else {
+                            surveyListAdapter.changeState(2);
+                        }
+                    }
+                }
+            }
+        });
+
+        //event
+        surveyListAdapter.setOnItemClickListener(new SurveyListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+//                Vote VoteItem = voteItems.get(position - 1);
+                Intent intent = new Intent(SurveyListFragment.this.getActivity(), VoteDetailActivity.class);
+//                intent.putExtra(Constant.KEY_HOME_ITEM, VoteItem);
+//                intent.putExtra(Constant.KEY_PROFILE_QUESTIONNAIRE_POINT, profileQuestionnaire);
+                startActivity(intent);
+//                getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.zoom_out);
+                Log.d("test", "item position = " + position);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
             }
         });
 
