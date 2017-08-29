@@ -1,155 +1,231 @@
 package net.nineoneww.mobile.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import net.nineoneww.mobile.R;
 import net.nineoneww.mobile.api.res.HomeItem;
 import net.nineoneww.mobile.api.res.Survey;
-import net.nineoneww.mobile.util.StringUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lilian on 2017/8/8.
+ * Created by kotaro.arimura on 2016/04/25.
  */
+public class SurveyListAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-public class SurveyListAdapter extends ArrayAdapter<HomeItem> {
+    private Context context;
+    private LayoutInflater layoutInflater;
+    private static final int TYPE_ITEM = 0;
 
-    private String profileQuestionnairePoint;
+    private static final int TYPE_FOOTER = 1;
+    //上拉加载更多
+    static final int PULL_LOAD_MORE = 0;
+    //正在加载更多
+    static final int LOADING_MORE = 1;
+    //没有更多
+    static final int NO_MORE = 2;
+    //脚布局当前的状态,默认为没有更多
+    int footer_state = 1;
+    private ArrayList<Survey> surveyData;
 
-    public SurveyListAdapter(Context context, List<HomeItem> surveys) {
-        super(context, 0, surveys);
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+        void onItemLongClick(View view, int position);
+    }
+
+    private SurveyListAdapter.OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
+    public SurveyListAdapter(Context context, ArrayList<Survey> surveys) {
+        this.surveyData = surveys;
+        this.context = context;
+        this.layoutInflater = LayoutInflater.from(context);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
-        final HomeItem survey = getItem(position);
-
-        SurveyType surveyType = SurveyType.valueOf(getItemViewType(position));
-
-//        switch (surveyType) {
-//            case PROFILE_QUESTIONNAIRE:
-//                if (convertView == null) {
-//                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.survey_list_item_profile_questionnaire, parent, false);
-//                }
-//
-//                ((TextView) convertView.findViewById(R.id.textViewSurveyTitle)).setText(survey.getItemTitle());
-//                ((TextView) convertView.findViewById(R.id.textViewSurveyId)).setText(survey.getItemNumber());
-//                String format = getContext().getResources().getString(R.string.label_unit_profile_questionnaire);
-//                ((TextView) convertView.findViewById(R.id.textViewPointLabel)).setText(StringUtil.format(format, profileQuestionnairePoint));
-//                break;
-//            case SURVEY:
-//                if (convertView == null) {
-//                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.survey_list_item, parent, false);
-//                }
-//
-//                ((TextView) convertView.findViewById(R.id.textViewSurveyTitle)).setText(survey.getItemTitle());
-//                ((TextView) convertView.findViewById(R.id.textViewSurveyId)).setText(survey.getItemNumber());
-//                ((TextView) convertView.findViewById(R.id.textViewMoney)).setText(survey.getItemPoint());
-//                ((TextView) convertView.findViewById(R.id.textViewPointLabel)).setText(getContext().getResources().getString(R.string.label_unit_survey));
-//                ((TextView) convertView.findViewById(R.id.textViewLoi)).setText(survey.getItemLoi());
-//                break;
-//            case MOBILE_BLOCKED_SURVEY:
-//                if (convertView == null) {
-//                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.survey_list_item_blocked, parent, false);
-//                }
-//
-//                //init for recycling
-//                convertView.findViewById(R.id.imageViewPc).setVisibility(View.VISIBLE);
-//                convertView.findViewById(R.id.imageViewTablet).setVisibility(View.VISIBLE);
-//
-//                ((TextView) convertView.findViewById(R.id.textViewSurveyTitle)).setText(survey.getItemTitle());
-//                ((TextView) convertView.findViewById(R.id.textViewSurveyId)).setText(survey.getItemNumber());
-//                ((TextView) convertView.findViewById(R.id.textViewMoney)).setText(survey.getItemPoint());
-//                ((TextView) convertView.findViewById(R.id.textViewPointLabel)).setText(getContext().getResources().getString(R.string.label_unit_survey));
-//                ((TextView) convertView.findViewById(R.id.textViewLoi)).setText(survey.getItemLoi());
-//                Survey researchSurvey = (Survey) survey;
-//                if(researchSurvey.getBlockedDevices().isPcBlocked()){
-//                    convertView.findViewById(R.id.imageViewPc).setVisibility(View.GONE);
-//                }
-//                if(researchSurvey.getBlockedDevices().isTabletBlocked()){
-//                    convertView.findViewById(R.id.imageViewTablet).setVisibility(View.GONE);
-//                }
-//                break;
-//
-//            case SSI_SURVEY:
-//                if (convertView == null) {
-//                    convertView = LayoutInflater.from(getContext()).inflate(R.layout.survey_list_item_profile_questionnaire, parent, false);
-//                }
-//
-//                ((TextView) convertView.findViewById(R.id.textViewSurveyTitle)).setText(survey.getItemTitle());
-//                if (survey.getItemNumber().equals("--")) {
-//                    convertView.findViewById(R.id.textView2).setVisibility(View.INVISIBLE);
-//                    convertView.findViewById(R.id.textViewSurveyId).setVisibility(View.INVISIBLE);
-//                } else {
-//                    ((TextView) convertView.findViewById(R.id.textViewSurveyId)).setText(survey.getItemNumber());
-//                }
-//                String pointFormat = getContext().getResources().getString(R.string.label_unit_profile_questionnaire_single);
-//                ((TextView) convertView.findViewById(R.id.textViewPointLabel)).setText(StringUtil.format(pointFormat, survey.getItemPoint()));
-//                ((TextView) convertView.findViewById(R.id.textViewProfilingSurvey)).setText(getContext().getResources().getString(R.string.label_ssi_Lucky_message));
-//                break;
-//        }
-
-        // Return the completed view to render on screen
-        return convertView;
-    }
-
-    public void setProfileQuestionnairePoint(String profileQuestionnairePoint) {
-        this.profileQuestionnairePoint = profileQuestionnairePoint;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == TYPE_ITEM) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(
+                    R.layout.content_survey_item,  parent, false);
+            return new SurveyListAdapter.ItemViewHolder(view);
+        }
+        else if (viewType == TYPE_FOOTER) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(
+                    R.layout.content_footer,  parent, false);
+            return new SurveyListAdapter.FooterViewHolder(view);
+        }
+        return null;
     }
 
     @Override
-    public int getViewTypeCount() {
-        return SurveyType.values().length;
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+// 绑定数据
+        if(holder instanceof ItemViewHolder){
+            ItemViewHolder itemViewHolder = (ItemViewHolder)holder;
+//            itemViewHolder.ivImg.setTag(voteData.get(position).getItemTitle());//设置Tag
+            itemViewHolder.tv_survey_title.setText(surveyData.get(position).getItemTitle());
+            itemViewHolder.tv_survey_number.setText(surveyData.get(position).getItemNumber());
+            itemViewHolder.tv_survey_type.setText("商业问卷");
+            itemViewHolder.tv_survey_duration.setText(surveyData.get(position).getItemLoi());
+            itemViewHolder.tv_survey_points.setText(surveyData.get(position).getItemPoint());
+
+            //通过集合中的图片地址获得图片并且设置到view上
+//            getImage(this.context, voteData.get(position).getVoteImgUrl(), itemViewHolder.ivImg);
+            if (onItemClickListener != null) {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = holder.getLayoutPosition();
+                        onItemClickListener.onItemClick(holder.itemView, position);
+                    }
+                });
+
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        int position = holder.getLayoutPosition();
+                        onItemClickListener.onItemLongClick(holder.itemView, position);
+                        return false;
+                    }
+                });
+            }
+        }else if(holder instanceof FooterViewHolder){
+            FooterViewHolder footerViewHolder = (FooterViewHolder)holder;
+            if(position == 0){
+                footerViewHolder.mProgressBar.setVisibility(View.GONE);
+                footerViewHolder.tv_line1.setVisibility(View.GONE);
+                footerViewHolder.tv_line2.setVisibility(View.GONE);
+                footerViewHolder.tv_state.setText("");
+            }
+            switch (footer_state) {//根据状态来让脚布局发生改变
+                case PULL_LOAD_MORE://上拉加载
+                    footerViewHolder.mProgressBar.setVisibility(View.GONE);
+                    footerViewHolder.tv_state.setText(R.string.footer_pull_loading);
+                    break;
+                case LOADING_MORE:
+                    footerViewHolder.mProgressBar.setVisibility(View.VISIBLE);
+                    footerViewHolder.tv_line1.setVisibility(View.GONE);
+                    footerViewHolder.tv_line2.setVisibility(View.GONE);
+                    footerViewHolder.tv_state.setText(R.string.footer_loading);
+                    break;
+                case NO_MORE:
+                    footerViewHolder.mProgressBar.setVisibility(View.GONE);
+                    footerViewHolder.tv_line1.setVisibility(View.VISIBLE);
+                    footerViewHolder.tv_line2.setVisibility(View.VISIBLE);
+                    footerViewHolder.tv_state.setText(R.string.footer_baseline);
+                    break;
+            }
+        }
+    }
+
+    public static class ItemViewHolder extends RecyclerView.ViewHolder {
+//        private ImageView ivImg;
+        private TextView tv_survey_title;
+        private TextView tv_survey_number;
+        private TextView tv_survey_type;
+        private TextView tv_survey_duration;
+        private TextView tv_survey_points;
+
+        public ItemViewHolder(View itemView) {
+            super(itemView);
+//            ivImg = (ImageView) itemView.findViewById(R.id.survey_url);
+            tv_survey_title = (TextView) itemView.findViewById(R.id.survey_title);
+            tv_survey_number = (TextView) itemView.findViewById(R.id.survey_number);
+            tv_survey_type = (TextView) itemView.findViewById(R.id.survey_type);
+            tv_survey_duration = (TextView) itemView.findViewById(R.id.survey_duration);
+            tv_survey_points = (TextView) itemView.findViewById(R.id.survey_points);
+        }
+    }
+
+    public static class FooterViewHolder extends RecyclerView.ViewHolder {
+        private ProgressBar mProgressBar;
+        private TextView tv_state;
+        private TextView tv_line1;
+        private TextView tv_line2;
+
+        public FooterViewHolder(View itemView) {
+            super(itemView);
+            mProgressBar = (ProgressBar) itemView.findViewById(R.id.progressbar);
+            tv_state = (TextView) itemView.findViewById(R.id.foot_view_item_tv);
+            tv_line1 = (TextView) itemView.findViewById(R.id.tv_line1);
+            tv_line2 = (TextView) itemView.findViewById(R.id.tv_line2);
+        }
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemCount() {
+        return surveyData == null ? 0 : surveyData.size() + 1;
     }
 
     @Override
     public int getItemViewType(int position) {
-        HomeItem surveyItem = getItem(position);
-        if (surveyItem.isProfileQuestionnaire()) {
-            return SurveyType.PROFILE_QUESTIONNAIRE.val;
-        } else if (surveyItem.isSOPQuestionnaire()) {
-            Survey research = (Survey) surveyItem;
-            if (research.getBlockedDevices().isMobileBlocked()) {
-                return SurveyType.MOBILE_BLOCKED_SURVEY.val;
-            } else {
-                return SurveyType.SURVEY.val;
-            }
+        if (position + 1 == getItemCount()) {
+            return TYPE_FOOTER;
         } else {
-            return SurveyType.SSI_SURVEY.val;
+            return TYPE_ITEM;
         }
     }
 
-    private enum SurveyType {
-        PROFILE_QUESTIONNAIRE(0),
-        MOBILE_BLOCKED_SURVEY(1),
-        SURVEY(2),
-        SSI_SURVEY(3);
-
-        private final int val;
-
-        SurveyType(int val) {
-            this.val = val;
-        }
-
-        static SurveyType valueOf(int val) {
-            switch (val) {
-                case 0:
-                    return PROFILE_QUESTIONNAIRE;
-                case 1:
-                    return MOBILE_BLOCKED_SURVEY;
-                case 2:
-                    return SURVEY;
-                default :
-                    return SSI_SURVEY;
-            }
-        }
+    public void changeState(int state) {
+        this.footer_state = state;
+        notifyDataSetChanged();
     }
+
+//    @Override
+//    public int getItemViewType(int position) {
+//        HomeItem surveyItem = getItem(position);
+//        if (surveyItem.isProfileQuestionnaire()) {
+//            return tv_survey_type.PROFILE_QUESTIONNAIRE.val;
+//        } else if (surveyItem.isSOPQuestionnaire()) {
+//            Survey research = (Survey) surveyItem;
+//            if (research.getBlockedDevices().isMobileBlocked()) {
+//                return tv_survey_type.MOBILE_BLOCKED_SURVEY.val;
+//            } else {
+//                return tv_survey_type.SURVEY.val;
+//            }
+//        } else {
+//            return tv_survey_type.SSI_SURVEY.val;
+//        }
+//    }
+//
+//    private enum tv_survey_type {
+//        PROFILE_QUESTIONNAIRE(0),
+//        MOBILE_BLOCKED_SURVEY(1),
+//        SURVEY(2),
+//        SSI_SURVEY(3);
+//
+//        private final int val;
+//
+//        tv_survey_type(int val) {
+//            this.val = val;
+//        }
+//
+//        static tv_survey_type valueOf(int val) {
+//            switch (val) {
+//                case 0:
+//                    return PROFILE_QUESTIONNAIRE;
+//                case 1:
+//                    return MOBILE_BLOCKED_SURVEY;
+//                case 2:
+//                    return SURVEY;
+//                default :
+//                    return SSI_SURVEY;
+//            }
+//        }
+//    }
 }
-

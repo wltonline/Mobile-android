@@ -5,12 +5,12 @@ package net.nineoneww.mobile.api.res;
  */
 
 public class Vote {
-    private String voteTitle;//书籍标题
-    private String voteAuthor; //书籍作者
-    private String votePrice; //书籍价格
-    private String votePubDate; //书籍出版时间
-    private String voteImgUrl; // 书籍图片Url地址
-    private String voteUrl; //书籍详情Url地址
+    private String voteTitle;
+    private String voteAuthor;
+    private String votePrice;
+    private String votePubDate;
+    private String voteImgUrl;
+    private String voteUrl;
 
     public String getVoteTitle() {
         return voteTitle;

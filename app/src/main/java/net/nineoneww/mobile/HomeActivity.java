@@ -13,10 +13,12 @@ import android.widget.TextView;
 import net.nineoneww.mobile.fragment.BookListFragment;
 import net.nineoneww.mobile.fragment.PromotionFragment;
 import net.nineoneww.mobile.fragment.SettingFragment;
+import net.nineoneww.mobile.fragment.SurveyListFragment;
 import net.nineoneww.mobile.fragment.VoteListFragment;
-import net.nineoneww.mobile.view.IconFontTextView;
+import net.nineoneww.mobile.widget.IconFontTextView;
 
 public class HomeActivity extends AppCompatActivity implements
+        SurveyListFragment.OnFragmentInteractionListener,
         BookListFragment.OnFragmentInteractionListener,
         VoteListFragment.OnFragmentInteractionListener,
         PromotionFragment.OnFragmentInteractionListener,
@@ -24,6 +26,7 @@ public class HomeActivity extends AppCompatActivity implements
         View.OnClickListener{
 
     private static final String TAG = "HomeActivity";
+    private SurveyListFragment surveyListFragment;
     private BookListFragment bookListFragment;
     private VoteListFragment voteListFragment;
     private SettingFragment settingFragment;
@@ -66,11 +69,11 @@ public class HomeActivity extends AppCompatActivity implements
         hideFragment(transaction);
         switch (i) {
             case 0:
-                if(bookListFragment == null){
-                    bookListFragment = new BookListFragment();
-                    transaction.add(R.id.fragment_container, bookListFragment);
+                if(surveyListFragment == null){
+                    surveyListFragment = new SurveyListFragment();
+                    transaction.add(R.id.fragment_container, surveyListFragment);
                 }else {
-                    transaction.show(bookListFragment);
+                    transaction.show(surveyListFragment);
                 }
                 break;
             case 1:
@@ -115,6 +118,10 @@ public class HomeActivity extends AppCompatActivity implements
 
     private void hideFragment(FragmentTransaction transaction2) {
         // TODO Auto-generated method stub
+        if(surveyListFragment != null){
+            transaction2.hide(surveyListFragment);
+        }
+
         if(bookListFragment != null){
             transaction2.hide(bookListFragment);
         }
@@ -236,6 +243,11 @@ public class HomeActivity extends AppCompatActivity implements
 
     @Override
     public void onSettingFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentBookListInteraction(Uri uri) {
 
     }
 }

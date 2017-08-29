@@ -7,7 +7,13 @@
     <color name="text_main">#fe7140</color>
     <color name="text_hover">#e65827</color>
     <color name="text_gray">#9296a1</color>
+    <color name="text_weak_gray">#cccccc</color>
     <color name="text_dark">#424242</color>
     <color name="text_white">#ffffff</color>
+    <color name="background_label_survey">#166eb9</color>
+    <color name="background_label_agree">#c7c048</color>
+    <color name="background_label_time">#51bfe0</color>
+    <color name="background_label_personal">#e5a243</color>
+    <color name="background_gray">#f6f6f6</color>
     <color name="transparent">#00000000</color>
 </resources>

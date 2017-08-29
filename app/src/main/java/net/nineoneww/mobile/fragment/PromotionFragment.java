@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 
 import net.nineoneww.mobile.R;
 import net.nineoneww.mobile.adapter.PromotionAdapter;
-import net.nineoneww.mobile.view.DividerItemDecoration;
+import net.nineoneww.mobile.widget.DividerItemDecoration;
 
 import java.util.ArrayList;
 

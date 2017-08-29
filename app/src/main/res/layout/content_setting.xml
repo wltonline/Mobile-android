@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="任务历史"/>
 
-            <net.nineoneww.mobile.view.IconFontTextView
+            <net.nineoneww.mobile.widget.IconFontTextView
                 android:id="@+id/textViewHistory_fontIcon"
                 style="@style/fontIcon_arrow"
                 app:fontFile="@string/font_file"
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="编辑资料"/>
-            <net.nineoneww.mobile.view.IconFontTextView
+            <net.nineoneww.mobile.widget.IconFontTextView
                 android:id="@+id/textViewProfile_fontIcon"
                 style="@style/fontIcon_arrow"
                 app:fontFile="@string/font_file"
@@ -73,7 +73,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:text="账号设置"/>
-        <net.nineoneww.mobile.view.IconFontTextView
+        <net.nineoneww.mobile.widget.IconFontTextView
             android:id="@+id/textViewAccount_fontIcon"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -89,7 +89,7 @@
             android:layout_alignLeft="@+id/textViewAccount"
             android:layout_alignStart="@+id/textViewAccount"
             android:text="系统设置"/>
-        <net.nineoneww.mobile.view.IconFontTextView
+        <net.nineoneww.mobile.widget.IconFontTextView
             android:id="@+id/textViewSystem_fontIcon"
             android:layout_below="@+id/textViewAccount"
             android:layout_alignParentEnd="true"
@@ -112,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="兑换设置"/>
-        <net.nineoneww.mobile.view.IconFontTextView
+        <net.nineoneww.mobile.widget.IconFontTextView
             android:id="@+id/textViewExchange_fontIcon"
             style="@style/fontIcon_arrow"
             app:fontFile="@string/font_file"

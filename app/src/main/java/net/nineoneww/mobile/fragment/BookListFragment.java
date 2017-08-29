@@ -172,6 +172,6 @@ public class BookListFragment extends Fragment implements SwipeRefreshLayout.OnR
     }
 
     public interface OnFragmentInteractionListener {
-        void onFragmentSurveyListInteraction(Uri uri);
+        void onFragmentBookListInteraction(Uri uri);
     }
 }

@@ -29,7 +29,7 @@
                     style="@style/tab_menu_text"
                     android:text="@string/title_survey" />
 
-                <net.nineoneww.mobile.view.IconFontTextView
+                <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_survey_fontIcon"
                     style="@style/tab_menu_fontIcon"
                     android:layout_above="@+id/tab_menu_survey"
@@ -63,7 +63,7 @@
                     style="@style/tab_menu_text"
                     android:text="@string/title_vote" />
 
-                <net.nineoneww.mobile.view.IconFontTextView
+                <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_vote_fontIcon"
                     style="@style/tab_menu_fontIcon"
                     android:layout_above="@+id/tab_menu_vote"
@@ -97,7 +97,7 @@
                     style="@style/tab_menu_text"
                     android:text="@string/title_promotion" />
 
-                <net.nineoneww.mobile.view.IconFontTextView
+                <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_promotion_fontIcon"
                     style="@style/tab_menu_fontIcon"
                     android:layout_above="@+id/tab_menu_promotion"
@@ -124,7 +124,7 @@
                     style="@style/tab_menu_text"
                     android:text="@string/title_exchange" />
 
-                <net.nineoneww.mobile.view.IconFontTextView
+                <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_exchange_fontIcon"
                     style="@style/tab_menu_fontIcon"
                     android:layout_above="@+id/tab_menu_exchange"
@@ -151,7 +151,7 @@
                     style="@style/tab_menu_text"
                     android:text="@string/title_user" />
 
-                <net.nineoneww.mobile.view.IconFontTextView
+                <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_user_fontIcon"
                     style="@style/tab_menu_fontIcon"
                     android:layout_above="@+id/tab_menu_user"

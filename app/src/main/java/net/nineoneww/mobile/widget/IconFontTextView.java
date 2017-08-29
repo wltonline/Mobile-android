@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.view;
+package net.nineoneww.mobile.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
