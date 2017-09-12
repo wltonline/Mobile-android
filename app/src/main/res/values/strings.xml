@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">91问问</string>
+    <string name="check_secret">Check App ID</string>
+    <string name="app_id">App ID</string>
+    <string name="app_name">Wenwen</string>
+
     <string name="font_file">iconfont/iconfont.ttf</string>
     <string name="icon_survey">&#xe74e;</string>
     <string name="icon_vote">&#xe6b2;</string>
@@ -9,12 +12,4 @@
     <string name="icon_user_on">&#xe732;</string>
     <string name="icon_arrow">&#xe6a7;</string>
     <string name="icon_close">&#xe6b7;</string>
-    <string name="title_survey">问卷一览</string>
-    <string name="title_vote">快速问答</string>
-    <string name="title_promotion">活动中心</string>
-    <string name="title_exchange">兑换中心</string>
-    <string name="title_user">个人中心</string>
-    <string name="footer_pull_loading">上拉加载更多</string>
-    <string name="footer_loading">正在加载...</string>
-    <string name="footer_baseline">我是有底线的</string>
 </resources>

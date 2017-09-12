@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/text_white"
+        android:background="@color/colorWhite"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -27,7 +27,7 @@
                 <TextView
                     android:id="@+id/tab_menu_survey"
                     style="@style/tab_menu_text"
-                    android:text="@string/title_survey" />
+                    android:text="@string/label_survey_list" />
 
                 <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_survey_fontIcon"
@@ -35,13 +35,6 @@
                     android:layout_above="@+id/tab_menu_survey"
                     app:fontFile="@string/font_file"
                     app:value="@string/icon_survey" />
-
-                <TextView
-                    android:id="@+id/tab_menu_survey_num"
-                    style="@style/tab_menu_bgnum"
-                    android:layout_toRightOf="@+id/tab_menu_survey"
-                    android:text="99+"
-                    android:visibility="gone" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -61,7 +54,7 @@
                 <TextView
                     android:id="@+id/tab_menu_vote"
                     style="@style/tab_menu_text"
-                    android:text="@string/title_vote" />
+                    android:text="@string/label_vote_list" />
 
                 <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_vote_fontIcon"
@@ -69,13 +62,6 @@
                     android:layout_above="@+id/tab_menu_vote"
                     app:fontFile="@string/font_file"
                     app:value="@string/icon_vote" />
-
-                <TextView
-                    android:id="@+id/tab_menu_vote_num"
-                    style="@style/tab_menu_bgnum"
-                    android:layout_toRightOf="@+id/tab_menu_vote"
-                    android:text="99+"
-                    android:visibility="gone" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -95,7 +81,7 @@
                 <TextView
                     android:id="@+id/tab_menu_promotion"
                     style="@style/tab_menu_text"
-                    android:text="@string/title_promotion" />
+                    android:text="@string/label_event_center" />
 
                 <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_promotion_fontIcon"
@@ -122,7 +108,7 @@
                 <TextView
                     android:id="@+id/tab_menu_exchange"
                     style="@style/tab_menu_text"
-                    android:text="@string/title_exchange" />
+                    android:text="@string/label_exchange_center" />
 
                 <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_exchange_fontIcon"
@@ -149,7 +135,7 @@
                 <TextView
                     android:id="@+id/tab_menu_user"
                     style="@style/tab_menu_text"
-                    android:text="@string/title_user" />
+                    android:text="@string/label_user_center" />
 
                 <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_user_fontIcon"
@@ -168,6 +154,6 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_above="@id/ly_tab_menu"
-        android:background="@color/text_gray" />
+        android:background="@color/colorTextGray" />
 
 </RelativeLayout>

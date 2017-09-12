@@ -136,19 +136,19 @@ public class VoteListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             switch (footer_state) {//根据状态来让脚布局发生改变
                 case PULL_LOAD_MORE://上拉加载
                     footerViewHolder.mProgressBar.setVisibility(View.GONE);
-                    footerViewHolder.tv_state.setText(R.string.footer_pull_loading);
+                    footerViewHolder.tv_state.setText(R.string.label_loading_refresh);
                     break;
                 case LOADING_MORE:
                     footerViewHolder.mProgressBar.setVisibility(View.VISIBLE);
                     footerViewHolder.tv_line1.setVisibility(View.GONE);
                     footerViewHolder.tv_line2.setVisibility(View.GONE);
-                    footerViewHolder.tv_state.setText(R.string.footer_loading);
+                    footerViewHolder.tv_state.setText(R.string.label_loading_more);
                     break;
                 case NO_MORE:
                     footerViewHolder.mProgressBar.setVisibility(View.GONE);
                     footerViewHolder.tv_line1.setVisibility(View.VISIBLE);
                     footerViewHolder.tv_line2.setVisibility(View.VISIBLE);
-                    footerViewHolder.tv_state.setText(R.string.footer_baseline);
+                    footerViewHolder.tv_state.setText(R.string.label_loading_baseline);
                     break;
             }
         }

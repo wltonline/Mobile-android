@@ -22,7 +22,7 @@
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="@color/colorProgress"
+        android:indeterminateTint="@color/colorTextMain"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

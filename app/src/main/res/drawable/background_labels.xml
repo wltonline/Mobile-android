@@ -3,7 +3,7 @@
     <!-- content -->
     <item>
         <shape android:shape="rectangle" >
-            <solid android:color="@color/background_label_time" />
+            <solid android:color="@color/colorBgLabelSurveyDuration" />
             <corners android:radius="3dp" />
         </shape>
     </item>

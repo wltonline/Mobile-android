@@ -17,13 +17,13 @@
             android:minHeight="?attr/actionBarSize"
             android:gravity="center_vertical"
             android:background="?attr/colorPrimary"
-            app:titleTextColor="@color/text_white">
+            app:titleTextColor="@color/colorWhite">
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@color/text_white"
+                android:textColor="@color/colorWhite"
                 android:textSize="20sp" />
         </android.support.v7.widget.Toolbar>
 

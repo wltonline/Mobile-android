@@ -15,9 +15,9 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparent"
-        android:paddingTop="@dimen/app_top_bar_height"
-        android:paddingBottom="@dimen/app_top_bar_height"/>
+        android:background="@color/colorBgTransparent"
+        android:paddingTop="@dimen/action_bar_height"
+        android:paddingBottom="@dimen/tab_menu_height"/>
 
     <include
         layout="@layout/tab_menu"

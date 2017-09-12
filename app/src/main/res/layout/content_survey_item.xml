@@ -6,7 +6,7 @@
     android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:background="@color/text_white">
+    android:background="@color/colorWhite">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -60,9 +60,9 @@
             android:layout_weight="1"
             android:text="商业问卷"
             android:textSize="12sp"
-            android:textColor="@color/text_white"
+            android:textColor="@color/colorWhite"
             android:background="@drawable/background_labels"
-            android:backgroundTint="@color/background_label_survey"/>
+            android:backgroundTint="@color/colorBgLabelSurvey"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
             android:paddingRight="10dp"
             android:layout_below="@id/survey_title"
             android:background="@drawable/background_labels"
-            android:backgroundTint="@color/background_label_time"
+            android:backgroundTint="@color/colorBgLabelSurveyDuration"
             android:layout_toRightOf="@id/survey_type"
             android:id="@+id/ly_survey_duration">
 
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="30"
-                android:textColor="@color/text_white"
+                android:textColor="@color/colorWhite"
                 android:textSize="12sp" />
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="分钟"
-                android:textColor="@color/text_white"
+                android:textColor="@color/colorWhite"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -111,7 +111,7 @@
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
             android:text="可中途退出"
-            android:textColor="@color/text_gray"
+            android:textColor="@color/colorTextWeakGray"
             android:textSize="12sp" />
 
     </RelativeLayout>
@@ -150,7 +150,7 @@
             android:layout_toLeftOf="@id/survey_points_label"
             android:layout_weight="1"
             android:text="100000"
-            android:textColor="@color/text_hover"
+            android:textColor="@color/colorTextMain"
             android:textStyle="bold"
             android:textSize="16sp"/>
     </RelativeLayout>

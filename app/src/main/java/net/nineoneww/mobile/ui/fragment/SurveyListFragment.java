@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.fragment;
+package net.nineoneww.mobile.ui.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,29 +14,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 import net.nineoneww.mobile.HomeActivity;
 import net.nineoneww.mobile.R;
 import net.nineoneww.mobile.VoteDetailActivity;
 import net.nineoneww.mobile.adapter.SurveyListAdapter;
-import net.nineoneww.mobile.api.res.HomeItem;
 import net.nineoneww.mobile.api.res.SopSurveysJson;
 import net.nineoneww.mobile.api.res.Survey;
-import net.nineoneww.mobile.widget.DividerItemDecoration;
 
-import org.json.JSONArray;
-
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Created by lilian on 2017/8/25.
+ * Created by lilian on 2017/8/30.
  */
 
 public class SurveyListFragment  extends Fragment implements SwipeRefreshLayout.OnRefreshListener,View.OnClickListener {
@@ -80,13 +71,13 @@ public class SurveyListFragment  extends Fragment implements SwipeRefreshLayout.
         });
         surveyRefreshLayout.setVisibility(View.VISIBLE);
         //show refresh
-//        surveyRefreshLayout.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                surveyRefreshLayout.setRefreshing(true);
-//                loadInfo();
-//            }
-//        });
+        surveyRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                surveyRefreshLayout.setRefreshing(true);
+                loadInfo();
+            }
+        });
 
         surveyRecyclerView = (RecyclerView) rootView.findViewById(R.id.rv_survey);
         homeItems = new ArrayList<Survey>();
@@ -143,7 +134,7 @@ public class SurveyListFragment  extends Fragment implements SwipeRefreshLayout.
             @Override
             public void onItemClick(View view, int position) {
 //                Vote VoteItem = voteItems.get(position - 1);
-                Intent intent = new Intent(SurveyListFragment.this.getActivity(), VoteDetailActivity.class);
+                Intent intent = new Intent(net.nineoneww.mobile.ui.fragment.SurveyListFragment.this.getActivity(), VoteDetailActivity.class);
 //                intent.putExtra(Constant.KEY_HOME_ITEM, VoteItem);
 //                intent.putExtra(Constant.KEY_PROFILE_QUESTIONNAIRE_POINT, profileQuestionnaire);
                 startActivity(intent);

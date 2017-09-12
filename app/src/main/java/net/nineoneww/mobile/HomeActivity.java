@@ -187,21 +187,21 @@ public class HomeActivity extends AppCompatActivity implements
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ly_tab_menu_survey:
-                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_survey);
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_survey_list);
                 setSelected();
                 setSelectFragment(0);
                 mTextView1.setSelected(true);
                 mIconFontTextView1.setSelected(true);
                 break;
             case R.id.ly_tab_menu_vote:
-                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_vote);
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_vote_list);
                 setSelected();
                 setSelectFragment(1);
                 mTextView2.setSelected(true);
                 mIconFontTextView2.setSelected(true);
                 break;
             case R.id.ly_tab_menu_promotion:
-                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_promotion);
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_event_center);
                 setSelected();
 //                Intent intent = new Intent(this, PromotionActivity.class);
 //                startActivity(intent);
@@ -210,14 +210,14 @@ public class HomeActivity extends AppCompatActivity implements
                 mIconFontTextView3.setSelected(true);
                 break;
             case R.id.ly_tab_menu_exchange:
-                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_exchange);
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_exchange_center);
                 setSelected();
                 setSelectFragment(3);
                 mTextView4.setSelected(true);
                 mIconFontTextView4.setSelected(true);
                 break;
             case R.id.ly_tab_menu_user:
-                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.title_user);
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_user_center);
                 setSelected();
                 setSelectFragment(4);
                 mTextView5.setSelected(true);
