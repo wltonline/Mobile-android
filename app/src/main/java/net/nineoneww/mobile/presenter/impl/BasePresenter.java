@@ -1,6 +1,7 @@
 package net.nineoneww.mobile.presenter.impl;
 
 import net.nineoneww.mobile.ui.view.BaseView;
+import net.nineoneww.mobile.presenter.impl.Presenter;
 
 /**
  * Created by lilian on 2017/8/30.
