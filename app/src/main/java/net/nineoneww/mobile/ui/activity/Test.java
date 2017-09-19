@@ -1,4 +1,4 @@
-package net.nineoneww.mobile;
+package net.nineoneww.mobile.ui.activity;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;

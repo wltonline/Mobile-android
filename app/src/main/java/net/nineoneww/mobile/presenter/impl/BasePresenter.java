@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.ui.presenter;
+package net.nineoneww.mobile.presenter.impl;
 
 import net.nineoneww.mobile.ui.view.BaseView;
 

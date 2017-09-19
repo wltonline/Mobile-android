@@ -1,15 +1,14 @@
 <resources>
-    <string name="check_secret">Check App ID</string>
-    <string name="app_id">App ID</string>
-    <string name="app_name">Wenwen</string>
+    <string name="check_secret" translatable="false">Check App ID</string>
+    <string name="app_id" translatable="false">App ID</string>
 
-    <string name="font_file">iconfont/iconfont.ttf</string>
-    <string name="icon_survey">&#xe74e;</string>
-    <string name="icon_vote">&#xe6b2;</string>
-    <string name="icon_promotion">&#xe6db;</string>
-    <string name="icon_exchange">&#xe662;</string>
-    <string name="icon_user">&#xe6b8;</string>
-    <string name="icon_user_on">&#xe732;</string>
-    <string name="icon_arrow">&#xe6a7;</string>
-    <string name="icon_close">&#xe6b7;</string>
+    <string name="font_file" translatable="false">iconfont/iconfont.ttf</string>
+    <string name="icon_survey" translatable="false">&#xe74e;</string>
+    <string name="icon_vote" translatable="false">&#xe6b2;</string>
+    <string name="icon_promotion" translatable="false">&#xe6db;</string>
+    <string name="icon_exchange" translatable="false">&#xe662;</string>
+    <string name="icon_user" translatable="false">&#xe6b8;</string>
+    <string name="icon_user_on" translatable="false">&#xe732;</string>
+    <string name="icon_arrow" translatable="false">&#xe6a7;</string>
+    <string name="icon_close" translatable="false">&#xe6b7;</string>
 </resources>

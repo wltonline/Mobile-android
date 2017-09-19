@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.fragment;
+package net.nineoneww.mobile.ui.fragment;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.adapter.PromotionAdapter;
+import net.nineoneww.mobile.ui.adapter.PromotionAdapter;
 import net.nineoneww.mobile.widget.DividerItemDecoration;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.fragment;
+package net.nineoneww.mobile.ui.fragment;
 
 import android.net.Uri;
 import android.os.Bundle;

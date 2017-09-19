@@ -81,7 +81,7 @@
                 <TextView
                     android:id="@+id/tab_menu_promotion"
                     style="@style/tab_menu_text"
-                    android:text="@string/label_event_center" />
+                    android:text="@string/label_event_list" />
 
                 <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_promotion_fontIcon"
@@ -108,7 +108,7 @@
                 <TextView
                     android:id="@+id/tab_menu_exchange"
                     style="@style/tab_menu_text"
-                    android:text="@string/label_exchange_center" />
+                    android:text="@string/label_exchange_home" />
 
                 <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_exchange_fontIcon"
@@ -135,7 +135,7 @@
                 <TextView
                     android:id="@+id/tab_menu_user"
                     style="@style/tab_menu_text"
-                    android:text="@string/label_user_center" />
+                    android:text="@string/label_user_home" />
 
                 <net.nineoneww.mobile.widget.IconFontTextView
                     android:id="@+id/tab_menu_user_fontIcon"

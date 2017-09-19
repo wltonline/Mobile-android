@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.adapter;
+package net.nineoneww.mobile.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,11 +9,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.api.res.HomeItem;
 import net.nineoneww.mobile.api.res.Survey;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by kotaro.arimura on 2016/04/25.

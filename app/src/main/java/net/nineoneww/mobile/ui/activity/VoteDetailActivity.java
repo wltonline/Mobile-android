@@ -1,7 +1,9 @@
-package net.nineoneww.mobile;
+package net.nineoneww.mobile.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import net.nineoneww.mobile.R;
 
 /**
  * Created by lilian on 2017/8/11.

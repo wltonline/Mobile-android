@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.fragment;
+package net.nineoneww.mobile.ui.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,9 +16,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import net.nineoneww.mobile.HomeActivity;
+import net.nineoneww.mobile.ui.activity.HomeActivity;
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.adapter.BookAdapter;
+import net.nineoneww.mobile.ui.adapter.BookAdapter;
 import net.nineoneww.mobile.api.res.Book;
 
 import org.json.JSONArray;

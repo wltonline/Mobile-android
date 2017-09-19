@@ -1,8 +1,10 @@
-package net.nineoneww.mobile;
+package net.nineoneww.mobile.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import net.nineoneww.mobile.R;
 
 /**
  * Created by lilian on 2017/8/4.

@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.adapter;
+package net.nineoneww.mobile.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

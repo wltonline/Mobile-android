@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.adapter;
+package net.nineoneww.mobile.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;

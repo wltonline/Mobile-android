@@ -1,4 +1,4 @@
-package net.nineoneww.mobile;
+package net.nineoneww.mobile.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import net.nineoneww.mobile.adapter.PromotionAdapter;
+import net.nineoneww.mobile.R;
+import net.nineoneww.mobile.ui.adapter.PromotionAdapter;
 
 import java.util.ArrayList;
 

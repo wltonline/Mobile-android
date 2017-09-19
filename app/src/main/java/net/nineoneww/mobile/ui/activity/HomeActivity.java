@@ -1,4 +1,4 @@
-package net.nineoneww.mobile;
+package net.nineoneww.mobile.ui.activity;
 
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
@@ -10,11 +10,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import net.nineoneww.mobile.fragment.BookListFragment;
-import net.nineoneww.mobile.fragment.PromotionFragment;
-import net.nineoneww.mobile.fragment.SettingFragment;
-import net.nineoneww.mobile.fragment.SurveyListFragment;
-import net.nineoneww.mobile.fragment.VoteListFragment;
+import net.nineoneww.mobile.R;
+import net.nineoneww.mobile.ui.fragment.BookListFragment;
+import net.nineoneww.mobile.ui.fragment.PromotionFragment;
+import net.nineoneww.mobile.ui.fragment.SettingFragment;
+import net.nineoneww.mobile.ui.fragment.SurveyListFragment;
+import net.nineoneww.mobile.ui.fragment.VoteListFragment;
 import net.nineoneww.mobile.widget.IconFontTextView;
 
 public class HomeActivity extends AppCompatActivity implements
@@ -201,7 +202,7 @@ public class HomeActivity extends AppCompatActivity implements
                 mIconFontTextView2.setSelected(true);
                 break;
             case R.id.ly_tab_menu_promotion:
-                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_event_center);
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_event_list);
                 setSelected();
 //                Intent intent = new Intent(this, PromotionActivity.class);
 //                startActivity(intent);
@@ -210,14 +211,14 @@ public class HomeActivity extends AppCompatActivity implements
                 mIconFontTextView3.setSelected(true);
                 break;
             case R.id.ly_tab_menu_exchange:
-                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_exchange_center);
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_exchange_home);
                 setSelected();
                 setSelectFragment(3);
                 mTextView4.setSelected(true);
                 mIconFontTextView4.setSelected(true);
                 break;
             case R.id.ly_tab_menu_user:
-                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_user_center);
+                initToolbar(R.id.toolbar, R.id.toolbar_title,R.string.label_user_home);
                 setSelected();
                 setSelectFragment(4);
                 mTextView5.setSelected(true);

@@ -1,5 +1,7 @@
 package net.nineoneww.mobile;
 
+import net.nineoneww.mobile.ui.activity.Test;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
