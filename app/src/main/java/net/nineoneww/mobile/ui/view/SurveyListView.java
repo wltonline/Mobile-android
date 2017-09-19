@@ -1,6 +1,6 @@
 package net.nineoneww.mobile.ui.view;
 
-import net.nineoneww.mobile.api.res.HomeItem;
+import net.nineoneww.mobile.model.HomeItem;
 
 import java.util.List;
 

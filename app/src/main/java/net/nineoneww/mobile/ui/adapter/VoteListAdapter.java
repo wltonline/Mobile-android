@@ -17,7 +17,7 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.api.res.Vote;
+import net.nineoneww.mobile.model.entity.Vote;
 
 import java.util.ArrayList;
 

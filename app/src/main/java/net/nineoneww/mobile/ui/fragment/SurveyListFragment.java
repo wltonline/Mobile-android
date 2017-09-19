@@ -21,8 +21,8 @@ import net.nineoneww.mobile.ui.activity.HomeActivity;
 import net.nineoneww.mobile.R;
 import net.nineoneww.mobile.ui.activity.VoteDetailActivity;
 import net.nineoneww.mobile.ui.adapter.SurveyListAdapter;
-import net.nineoneww.mobile.api.res.SopSurveysJson;
-import net.nineoneww.mobile.api.res.Survey;
+import net.nineoneww.mobile.api.SopSurveysJson;
+import net.nineoneww.mobile.model.entity.Survey;
 
 import java.util.ArrayList;
 

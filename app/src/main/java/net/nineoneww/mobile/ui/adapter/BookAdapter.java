@@ -16,7 +16,7 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
 
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.api.res.Book;
+import net.nineoneww.mobile.model.entity.Book;
 
 import java.util.ArrayList;
 import java.util.List;

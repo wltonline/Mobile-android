@@ -24,7 +24,7 @@ import net.nineoneww.mobile.ui.activity.VoteDetailActivity;
 import net.nineoneww.mobile.ui.activity.HomeActivity;
 import net.nineoneww.mobile.R;
 import net.nineoneww.mobile.ui.adapter.VoteListAdapter;
-import net.nineoneww.mobile.api.res.Vote;
+import net.nineoneww.mobile.model.entity.Vote;
 
 import org.json.JSONArray;
 import org.json.JSONException;

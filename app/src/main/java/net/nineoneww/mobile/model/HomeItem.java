@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.api.res;
+package net.nineoneww.mobile.model;
 
 import java.io.Serializable;
 

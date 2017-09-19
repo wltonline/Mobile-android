@@ -1,4 +1,6 @@
-package net.nineoneww.mobile.api.res;
+package net.nineoneww.mobile.api;
+
+import net.nineoneww.mobile.model.entity.Survey;
 
 import java.util.ArrayList;
 import java.util.List;

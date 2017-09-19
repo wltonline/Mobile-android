@@ -19,7 +19,7 @@ import com.android.volley.toolbox.Volley;
 import net.nineoneww.mobile.ui.activity.HomeActivity;
 import net.nineoneww.mobile.R;
 import net.nineoneww.mobile.ui.adapter.BookAdapter;
-import net.nineoneww.mobile.api.res.Book;
+import net.nineoneww.mobile.model.entity.Book;
 
 import org.json.JSONArray;
 import org.json.JSONException;

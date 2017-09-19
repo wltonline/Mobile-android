@@ -2,7 +2,7 @@ package net.nineoneww.mobile.presenter.impl;
 
 import android.content.Context;
 
-import net.nineoneww.mobile.api.res.Survey;
+import net.nineoneww.mobile.model.entity.Survey;
 import net.nineoneww.mobile.ui.view.SurveyListView;
 
 import java.util.ArrayList;

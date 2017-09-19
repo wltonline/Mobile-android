@@ -1,16 +1,12 @@
 package net.nineoneww.mobile.ui.activity;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import net.nineoneww.mobile.api.res.SopSurveysJson;
-import net.nineoneww.mobile.api.res.Survey;
+import net.nineoneww.mobile.api.SopSurveysJson;
+import net.nineoneww.mobile.model.entity.Survey;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**

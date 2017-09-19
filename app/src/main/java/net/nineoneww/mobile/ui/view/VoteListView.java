@@ -1,6 +1,6 @@
 package net.nineoneww.mobile.ui.view;
 
-import net.nineoneww.mobile.api.res.Vote;
+import net.nineoneww.mobile.model.entity.Vote;
 
 import java.util.List;
 

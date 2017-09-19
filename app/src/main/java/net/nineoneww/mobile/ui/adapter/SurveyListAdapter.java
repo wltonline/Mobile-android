@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import net.nineoneww.mobile.R;
-import net.nineoneww.mobile.api.res.Survey;
+import net.nineoneww.mobile.model.entity.Survey;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package net.nineoneww.mobile.api.res;
+package net.nineoneww.mobile.model.entity;
 
 /**
  * Created by lilian on 2017/8/10.

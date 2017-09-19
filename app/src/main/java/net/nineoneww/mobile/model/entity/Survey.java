@@ -1,8 +1,9 @@
-package net.nineoneww.mobile.api.res;
+package net.nineoneww.mobile.model.entity;
 
 
 import com.google.gson.annotations.SerializedName;
 
+import net.nineoneww.mobile.model.HomeItem;
 import net.nineoneww.mobile.util.Constant;
 
 import java.io.Serializable;
