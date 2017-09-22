@@ -166,7 +166,6 @@ public class HomeActivity extends AppCompatActivity implements
         ly_four.setOnClickListener(this);
         ly_five.setOnClickListener(this);
 
-
     }
 
     //重置所有文本的选中状态

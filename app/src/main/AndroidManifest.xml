@@ -60,6 +60,22 @@
                     android:scheme="91wenwen" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="91wenwen.net"
+                    android:path="/home"
+                    android:scheme="91wenwen" />
+            </intent-filter>
+        </activity>
         <provider
             android:authorities="net.nineoneww.mobile.fileprovider"
             android:name="android.support.v4.content.FileProvider"

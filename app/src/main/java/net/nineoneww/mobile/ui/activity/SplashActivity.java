@@ -2,6 +2,7 @@ package net.nineoneww.mobile.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import net.nineoneww.mobile.R;
@@ -18,8 +19,10 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        startApplication();
+//        startApplication();
     }
 
     private void startApplication() {
