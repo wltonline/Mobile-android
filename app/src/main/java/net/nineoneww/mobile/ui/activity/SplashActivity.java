@@ -22,7 +22,7 @@ public class SplashActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        startApplication();
+        startApplication();
     }
 
     private void startApplication() {

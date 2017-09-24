@@ -25,8 +25,9 @@ public class UuidTool {
         if (uuid == null) {
             synchronized (UuidTool.class) {
                 if (uuid == null) {
-                    uuid = UUID.fromString(readDeviceID());
-                    if(uuid == null) {
+//                    uuid = UUID.fromString(readDeviceID());
+                    String deviceIdFromSD =readDeviceID();
+                    if(deviceIdFromSD == null) {
                         final SharedPreferences prefs = context.getSharedPreferences(Constant.PREFERENCE, 0);
                         final String id = prefs.getString(DEVICE_UUID, null);
                         if (id != null) {
@@ -56,6 +57,8 @@ public class UuidTool {
 
                             saveDeviceID(uuid.toString());
                         }
+                    }else{
+                        uuid = UUID.fromString(deviceIdFromSD);
                     }
                 }
             }
@@ -127,10 +130,10 @@ public class UuidTool {
     }
 
     public static String readDeviceID() {
-        if (!"不适用".equals(getDefaultFilePath())) {
+        String filePath = getDefaultFilePath();
+        if (!"不适用".equals(filePath)) {
             try {
-                File file = new File(getDefaultFilePath(),
-                        PREFS_FILE);
+                File file = new File(filePath);
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String readline = "";
                 StringBuffer buffer = new StringBuffer();
